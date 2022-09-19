@@ -5,12 +5,9 @@ using UnityEngine;
 public class IsVisible : MonoBehaviour
 {
     Renderer m_Renderer;
-
-    bool moving = false;
-    float speed = 10f;
-
     public GameObject eventHandler;
 
+    public bool seen = false;
 
     // Use this for initialization
     void Start()
@@ -21,19 +18,14 @@ public class IsVisible : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_Renderer.isVisible) {
-            Invoke("moveOver", 1);
-        }
-
-        if (moving) {
-            transform.Translate(new Vector3 (-7, 0, -1) * speed * Time.deltaTime);
+        if (m_Renderer.isVisible && !seen) {
+            Invoke("Disappear", 3);
+            seen = true;
         }
     }
 
-    public void moveOver() {
-        moving = true;
-        eventHandler.GetComponent<Event>().JumpScareInitializer();
-        Invoke("DestroyObject", 1);
+    public void Disappear() {
+        eventHandler.GetComponent<Event>().Disappear();
     }
 
     public void DestroyObject() {

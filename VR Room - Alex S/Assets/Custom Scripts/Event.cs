@@ -23,11 +23,13 @@ public class Event : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Invoke("playCrowSound", 10f);
+
         Invoke("playLightSound", 20f);
         Invoke("Disable", 20f);
         Invoke("Enable", 20.1f);
         Invoke("Disable", 20.2f);
-        Invoke("playCrowSound", 10f);
+        
     }
 
     // Update is called once per frame
@@ -37,9 +39,7 @@ public class Event : MonoBehaviour
             jumpScare.transform.Translate(Vector3.forward * 12 * Time.deltaTime);
         }
     }
-    public void JumpScareInitializer() {
-        Invoke("JumpScare", 15f);
-    }
+
     public void playLightSound() {
         AudioSource.PlayClipAtPoint(light, transform.position, volume);
     }
@@ -53,9 +53,21 @@ public class Event : MonoBehaviour
         mainLight.SetActive(true);
         creature.SetActive(true);
     }
+
     public void JumpScare() {
         jumpScare.SetActive(true);
         AudioSource.PlayClipAtPoint(jumpScareSound, jumpScare.transform.position, volume);
         scare = true;
+    }
+
+    public void RemoveCreature() {
+        creature.GetComponent<IsVisible>().DestroyObject();
+        Invoke("JumpScare", 15f);
+    }
+    public void Disappear() {
+        Invoke("playLightSound", 1f);
+        Invoke("Enable", 1f);
+        Invoke("Disable", 1.1f);
+        Invoke("RemoveCreature", 1.1f);
     }
 }
