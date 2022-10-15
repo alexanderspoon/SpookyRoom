@@ -25,10 +25,10 @@ public class Event : MonoBehaviour
     {
         Invoke("playCrowSound", 10f);
 
-        Invoke("playLightSound", 20f);
-        Invoke("Disable", 20f);
-        Invoke("Enable", 20.1f);
-        Invoke("Disable", 20.2f);
+        Invoke("playLightSound", 30f);
+        Invoke("Disable", 30f);
+        Invoke("Enable", 30.1f);
+        Invoke("Disable", 30.2f);
         
     }
 

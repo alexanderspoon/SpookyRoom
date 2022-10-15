@@ -19,7 +19,7 @@ public class IsVisible : MonoBehaviour
     void Update()
     {
         if (m_Renderer.isVisible && !seen) {
-            Invoke("Disappear", 3);
+            Invoke("Disappear", 4);
             seen = true;
         }
     }
